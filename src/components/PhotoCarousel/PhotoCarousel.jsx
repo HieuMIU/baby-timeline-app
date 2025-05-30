@@ -1,10 +1,11 @@
 import { useRef, useState, useEffect } from 'react';
-import image1 from '../assets/evy.jpg';
-import image2 from '../assets/evy-2.jpg';
-import image3 from '../assets/evy-3.jpg';
-import image4 from '../assets/evy-4.jpg';
-import image5 from '../assets/evy-5.jpg';
-import image6 from '../assets/evy-6.jpg';
+import image1 from '../../assets/evy.jpg';
+import image2 from '../../assets/evy-2.jpg';
+import image3 from '../../assets/evy-3.jpg';
+import image4 from '../../assets/evy-4.jpg';
+import image5 from '../../assets/evy-5.jpg';
+import image6 from '../..//assets/evy-6.jpg';
+import './PhotoCarousel.css';
 
 const baseImages = [image1, image2, image3, image4, image5, image6];
 // Repeat each image 5 times for continuous scrolling (windmill effect)
@@ -79,11 +80,11 @@ function PhotoCarousel() {
   }, []);
 
   return (
-    <div className="w-full max-w-5xl mx-auto py-12">
-      <h2 className="text-3xl font-bold text-center mb-8 text-white">Photo Carousel</h2>
+    <div className="carousel-container">
+      <h2 className="carousel-title">Photo Carousel</h2>
       <div
         ref={carouselRef}
-        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide select-none"
+        className="carousel-track"
         style={{ scrollBehavior: 'smooth' }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
@@ -93,11 +94,9 @@ function PhotoCarousel() {
         {images.map((src, index) => (
           <div
             key={index}
-            className={`flex-shrink-0 snap-center w-80 mx-4 transition-all duration-300 ease-in-out relative ${
-              index % baseImages.length === activeIndex
-                ? 'scale-110 z-10 opacity-100'
-                : 'scale-95 opacity-80'
-            } hover:scale-105 hover:opacity-100 hover:shadow-xl hover:z-20`}
+            className={`carousel-item ${
+              index % baseImages.length === activeIndex ? 'active' : ''
+            }`}
             style={{
               transform:
                 isDragging && index % baseImages.length === activeIndex
@@ -108,7 +107,7 @@ function PhotoCarousel() {
             <img
               src={src}
               alt={`Photo ${(index % baseImages.length) + 1}`}
-              className="w-80 h-80 object-cover rounded-lg shadow-md"
+              className="carousel-image"
               loading="lazy"
             />
           </div>

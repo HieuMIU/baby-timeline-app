@@ -1,5 +1,5 @@
 import './App.css'
-import PhotoCarousel from './components/PhotoCarousel.jsx';
+import PhotoCarousel from './components/PhotoCarousel/PhotoCarousel.jsx';
 function App() {
   return (
     <>
