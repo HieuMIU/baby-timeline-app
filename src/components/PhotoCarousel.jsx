@@ -1,15 +1,14 @@
 import { useRef, useState, useEffect } from 'react';
+import image1 from '../assets/evy.jpg';
+import image2 from '../assets/evy-2.jpg';
+import image3 from '../assets/evy-3.jpg';
+import image4 from '../assets/evy-4.jpg';
+import image5 from '../assets/evy-5.jpg';
+import image6 from '../assets/evy-6.jpg';
 
-const images = [
-  'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1471922694854-ff1b63b20054?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1509233725247-49e657c61113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1517816428104-380fd9864d17?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1490730141103-6cac27aaab94?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-];
+const baseImages = [image1, image2, image3, image4, image5, image6];
+// Repeat each image 5 times for continuous scrolling (windmill effect)
+const images = Array(5).fill(baseImages).flat(); // 30 images total (6 images x 5 repetitions)
 
 function PhotoCarousel() {
   const carouselRef = useRef(null);
@@ -34,7 +33,7 @@ function PhotoCarousel() {
     if (!isDragging || !carouselRef.current) return;
     e.preventDefault();
     const x = e.pageX - carouselRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5; // Reduced drag sensitivity
+    const walk = (x - startX) * 1.5;
     carouselRef.current.scrollLeft = scrollLeft - walk;
     setVelocity(walk);
   };
@@ -44,7 +43,6 @@ function PhotoCarousel() {
     if (!carouselRef.current) return;
     setIsDragging(false);
     carouselRef.current.style.cursor = 'grab';
-    // Apply momentum
     const momentum = setInterval(() => {
       carouselRef.current.scrollLeft -= velocity * 0.05;
       setVelocity((prev) => prev * 0.95);
@@ -63,9 +61,9 @@ function PhotoCarousel() {
     const handleScroll = () => {
       if (!carouselRef.current) return;
       const scrollPos = carouselRef.current.scrollLeft;
-      const imageWidth = carouselRef.current.offsetWidth * 0.3; // Approximate image width
-      const newIndex = Math.round(scrollPos / imageWidth);
-      setActiveIndex(Math.min(Math.max(newIndex, 0), images.length - 1));
+      const imageWidth = carouselRef.current.offsetWidth * 0.3;
+      const newIndex = Math.round(scrollPos / imageWidth) % baseImages.length;
+      setActiveIndex((newIndex + baseImages.length) % baseImages.length);
     };
 
     const carouselElement = carouselRef.current;
@@ -95,19 +93,23 @@ function PhotoCarousel() {
         {images.map((src, index) => (
           <div
             key={index}
-            className={`flex-shrink-0 snap-center w-80 h-80 mx-4 transition-all duration-300 ease-in-out ${
-              index === activeIndex
+            className={`flex-shrink-0 snap-center w-80 mx-4 transition-all duration-300 ease-in-out relative ${
+              index % baseImages.length === activeIndex
                 ? 'scale-110 z-10 opacity-100'
                 : 'scale-95 opacity-80'
-            } hover:scale-105 hover:opacity-100 hover:shadow-xl`}
+            } hover:scale-105 hover:opacity-100 hover:shadow-xl hover:z-20`}
             style={{
-              transform: isDragging && index === activeIndex ? `rotate(${velocity * 0.05}deg)` : 'none',
+              transform:
+                isDragging && index % baseImages.length === activeIndex
+                  ? `rotate(${velocity * 0.05}deg)`
+                  : 'none',
             }}
           >
             <img
               src={src}
-              alt={`Photo ${index + 1}`}
-              className="w-full h-full object-cover rounded-lg shadow-md"
+              alt={`Photo ${(index % baseImages.length) + 1}`}
+              className="w-80 h-80 object-cover rounded-lg shadow-md"
+              loading="lazy"
             />
           </div>
         ))}
