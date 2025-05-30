@@ -1,0 +1,63 @@
+.carousel-container {
+  width: 100%;
+  max-width: 1280px; /* Equivalent to Tailwind's max-w-5xl */
+  margin: 0 auto;
+  padding: 48px 0; /* Equivalent to py-12 */
+}
+
+.carousel-title {
+  font-size: 30px; /* Equivalent to text-3xl */
+  font-weight: 700; /* Equivalent to font-bold */
+  text-align: center;
+  margin-bottom: 32px; /* Equivalent to mb-8 */
+  color: #ffffff; /* Equivalent to text-white */
+}
+
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory; /* Equivalent to snap-x snap-mandatory */
+  -webkit-overflow-scrolling: touch;
+  user-select: none; /* Equivalent to select-none */
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none; /* Equivalent to scrollbar-hide */
+}
+
+.carousel-track {
+  -ms-overflow-style: none; /* Equivalent to scrollbar-hide */
+  scrollbar-width: none; /* Equivalent to scrollbar-hide */
+}
+
+.carousel-item {
+  flex-shrink: 0; /* Equivalent to flex-shrink-0 */
+  scroll-snap-align: center; /* Equivalent to snap-center */
+  width: 320px; /* Equivalent to w-80 */
+  margin: 0 16px; /* Equivalent to mx-4 */
+  transition: all 300ms ease-in-out; /* Equivalent to transition-all duration-300 ease-in-out */
+  position: relative; /* Equivalent to relative */
+  transform: scale(0.95); /* Default scale for inactive, equivalent to scale-95 */
+  opacity: 0.8; /* Equivalent to opacity-80 */
+}
+
+.carousel-item.active {
+  transform: scale(1.1); /* Equivalent to scale-110 */
+  z-index: 10; /* Equivalent to z-10 */
+  opacity: 1; /* Equivalent to opacity-100 */
+}
+
+.carousel-item:hover {
+  transform: scale(1.05); /* Equivalent to hover:scale-105 */
+  opacity: 1; /* Equivalent to hover:opacity-100 */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Equivalent to hover:shadow-xl */
+  z-index: 20; /* Equivalent to hover:z-20 */
+}
+
+.carousel-image {
+  width: 320px; /* Equivalent to w-80 */
+  height: 320px; /* Equivalent to h-80 */
+  object-fit: cover; /* Equivalent to object-cover */
+  border-radius: 8px; /* Equivalent to rounded-lg */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Equivalent to shadow-md */
+}
