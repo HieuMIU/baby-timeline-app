@@ -1,11 +1,19 @@
-import './App.css'
-import PhotoCarousel from './components/PhotoCarousel/PhotoCarousel.jsx';
+import React from 'react';
+import Header from './components/Header/Header';
+import PhotoCarousel from './components/PhotoCarousel/PhotoCarousel';
+import Timeline from './components/Timeline/Timeline';
+import Footer from './components/Footer/Footer';
+import './App.css';
+
 function App() {
   return (
-    <>
-      <PhotoCarousel />
-    </>
-  )
+    <div className="app">
+      <Header />
+      <Timeline />
+      <PhotoCarousel />     
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
