@@ -58,6 +58,13 @@
   border-radius: 8px;
   margin: 0 5px;
   scroll-snap-align: center;
+  transition: transform 0.3s ease, z-index 0.3s ease;
+  z-index: 1;
+}
+
+.timeline-carousel-image:hover {
+  transform: scale(1.2);
+  z-index: 2;
 }
 
 .vertical-timeline-element-subtitle {
@@ -86,6 +93,10 @@
 
   .timeline-carousel-image {
     height: 320px;
+  }
+
+  .timeline-carousel-image:hover {
+    transform: scale(1.2);
   }
 
   .vertical-timeline-element-subtitle {
