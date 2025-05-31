@@ -1,15 +1,9 @@
 import { useRef, useState, useEffect } from 'react';
-import image1 from '../../assets/evy.jpg';
-import image2 from '../../assets/evy-2.jpg';
-import image3 from '../../assets/evy-3.jpg';
-import image4 from '../../assets/evy-4.jpg';
-import image5 from '../../assets/evy-5.jpg';
-import image6 from '../..//assets/evy-6.jpg';
+import { LOOP_IMAGES } from '../../data';
 import './PhotoCarousel.css';
 
-const baseImages = [image1, image2, image3, image4, image5, image6];
-// Repeat each image 5 times for continuous scrolling (windmill effect)
-const images = Array(5).fill(baseImages).flat(); // 30 images total (6 images x 5 repetitions)
+const baseImages = LOOP_IMAGES;
+const images = Array(5).fill(baseImages).flat();
 
 function PhotoCarousel() {
   const carouselRef = useRef(null);
@@ -81,7 +75,7 @@ function PhotoCarousel() {
 
   return (
     <div className="carousel-container">
-      <h2 className="carousel-title">Photo Carousel</h2>
+      <h2 className="carousel-title">Evy vẫn còn rất nhiều ảnh nữa...</h2>
       <div
         ref={carouselRef}
         className="carousel-track"
