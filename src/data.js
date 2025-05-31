@@ -17,15 +17,15 @@ import image16 from './assets/images/evy-16.jpg';
 
 import mileStone1_1 from './assets/images/milestone-1-1.jpeg';
 import mileStone1_2 from './assets/images/milestone-1-2.jpeg';
-import mileStone1_3 from './assets/images/milestone-1-4.jpeg';
+import mileStone1_3 from './assets/images/milestone-1-3.jpeg';
 
 import mileStone2_1 from './assets/images/milestone-2-1.jpeg';
 import mileStone2_2 from './assets/images/milestone-2-2.jpeg';
 import mileStone2_3 from './assets/images/milestone-2-3.jpeg';
 
 import mileStone3_1 from './assets/images/milestone-3-1.jpeg';
-import mileStone3_2 from './assets/images/milestone-3-2.jpg';
-import mileStone3_3 from './assets/images/milestone-3-3.jpg';
+import mileStone3_2 from './assets/images/milestone-3-2.jpeg';
+import mileStone3_3 from './assets/images/milestone-3-3.jpeg';
 
 import mileStone4_1 from './assets/images/milestone-4-1.jpg';
 import mileStone4_2 from './assets/images/milestone-4-2.jpeg';
